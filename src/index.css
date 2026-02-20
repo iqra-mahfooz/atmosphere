@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 30% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 30% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 30% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 213 27% 84%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* ===== AtmoSphere Dynamic Theme Tokens (default = cloudy/neutral) ===== */
+    --atmo-bg-from: 222 30% 8%;
+    --atmo-bg-to: 220 25% 14%;
+    --atmo-accent: 220 20% 60%;
+    --atmo-text: 210 30% 90%;
+    --atmo-card-bg: 222 30% 12%;
+    --atmo-particle: 210 40% 80%;
+  }
+
+  /* ===== Mood Themes ===== */
+  .theme-sunny {
+    --atmo-bg-from: 38 85% 10%;
+    --atmo-bg-to: 45 80% 18%;
+    --atmo-accent: 45 95% 62%;
+    --atmo-text: 45 60% 95%;
+    --atmo-card-bg: 40 60% 14%;
+    --atmo-particle: 50 90% 70%;
+  }
+
+  .theme-cold {
+    --atmo-bg-from: 215 55% 8%;
+    --atmo-bg-to: 220 60% 14%;
+    --atmo-accent: 215 85% 65%;
+    --atmo-text: 210 50% 95%;
+    --atmo-card-bg: 218 50% 12%;
+    --atmo-particle: 210 60% 80%;
+  }
+
+  .theme-hot {
+    --atmo-bg-from: 15 70% 8%;
+    --atmo-bg-to: 20 65% 15%;
+    --atmo-accent: 20 90% 62%;
+    --atmo-text: 25 60% 96%;
+    --atmo-card-bg: 18 55% 12%;
+    --atmo-particle: 30 80% 65%;
+  }
+
+  .theme-rainy {
+    --atmo-bg-from: 240 35% 7%;
+    --atmo-bg-to: 245 30% 13%;
+    --atmo-accent: 240 50% 62%;
+    --atmo-text: 240 30% 93%;
+    --atmo-card-bg: 242 35% 11%;
+    --atmo-particle: 240 40% 70%;
+  }
+
+  .theme-stormy {
+    --atmo-bg-from: 270 40% 5%;
+    --atmo-bg-to: 265 35% 11%;
+    --atmo-accent: 270 65% 65%;
+    --atmo-text: 265 30% 95%;
+    --atmo-card-bg: 268 40% 9%;
+    --atmo-particle: 270 50% 70%;
+  }
+
+  .theme-snowy {
+    --atmo-bg-from: 210 40% 10%;
+    --atmo-bg-to: 205 35% 16%;
+    --atmo-accent: 210 80% 82%;
+    --atmo-text: 210 30% 96%;
+    --atmo-card-bg: 208 40% 14%;
+    --atmo-particle: 210 50% 90%;
+  }
+
+  .theme-cloudy {
+    --atmo-bg-from: 220 25% 9%;
+    --atmo-bg-to: 222 22% 15%;
+    --atmo-accent: 220 30% 62%;
+    --atmo-text: 220 20% 92%;
+    --atmo-card-bg: 222 25% 13%;
+    --atmo-particle: 220 20% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--atmo-accent) / 0.4);
+  border-radius: 3px;
+}
+
+/* Particle animations */
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0.3; }
+}
+
+@keyframes snow-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.atmo-particle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  background: hsl(var(--atmo-particle));
+}
+
+.particle-rain {
+  width: 1px;
+  height: 20px;
+  border-radius: 1px;
+  animation: rain-fall linear infinite;
+}
+
+.particle-snow {
+  border-radius: 50%;
+  animation: snow-fall linear infinite;
+}
+
+.particle-float {
+  animation: float-up linear infinite;
+}
