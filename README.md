@@ -10,7 +10,7 @@ The app fetches live weather data using the OpenWeather API and presents it in a
 🚀 Live Demo
 
 🔗 Live Website:
-https://your-live-link-here
+https://iq-atmosphere.netlify.app
 
 🔗 GitHub Repository:
 https://github.com/iqra-mahfooz/atmosphere
